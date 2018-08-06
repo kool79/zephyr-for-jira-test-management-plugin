@@ -53,7 +53,7 @@ public class ZephyrInstance extends Zephyr {
 	}
 
 	@Extension
-	public static class DesciptorImpl extends ZephyrDescriptor {
+	public static class DescriptorImpl extends ZephyrDescriptor {
 
 		@Nonnull
 		@Override
