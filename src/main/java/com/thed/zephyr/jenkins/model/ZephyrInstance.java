@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
+import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
 
 public class ZephyrInstance extends Zephyr {
@@ -53,6 +54,12 @@ public class ZephyrInstance extends Zephyr {
 
 	@Extension
 	public static class DesciptorImpl extends ZephyrDescriptor {
+
+		@Nonnull
+		@Override
+		public String getDisplayName() {
+			return "JIRA Server/Data Center";
+		}
 
 		public FormValidation doTestConnection (
 				@QueryParameter String serverAddress,

@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 
+import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
 import java.util.Map;
 
@@ -83,6 +84,12 @@ public class ZephyrCloudInstance extends Zephyr {
 
 	@Extension
 	public static class DescriptorImpl extends ZephyrDescriptor {
+
+		@Nonnull
+		@Override
+		public String getDisplayName() {
+			return "JIRA Cloud";
+		}
 
 		public FormValidation doTestZephyrCloudConnection(
 				@QueryParameter String jiraCloudAddress,
