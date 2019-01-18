@@ -14,12 +14,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import java.util.logging.Logger;
 
 import com.thed.zephyr.cloud.rest.ZFJCloudRestClient;
 import com.thed.zephyr.cloud.rest.client.JwtGenerator;
 
 public class ServerInfo {
-	
+	private final static Logger LOG = Logger.getLogger(ServerInfo.class.getName());	
 	private static String URL_GET_PROJECTS = "{SERVER}/rest/api/2/project?expand";
 	private static String URL_GET_ISSUETYPES = "{SERVER}/rest/api/2/issuetype";
 	private static String URL_ZCLOUD_GET_GENERAL_INFO = "{SERVER}/public/rest/api/1.0/config/generalinformation";
@@ -45,12 +46,13 @@ public class ServerInfo {
 		}
 
 		int statusCode = response.getStatusLine().getStatusCode();
-
+LOG.info("status code:"+statusCode);
 		if (statusCode >= 200 && statusCode < 300) {
 			HttpEntity entity = response.getEntity();
 			String string = null;
 			try {
 				string = EntityUtils.toString(entity);
+				LOG.info("response.getEntity():"+string);
 				if (string.startsWith("[") && string.endsWith("]") ) return true;
 			} catch (ParseException e) {
 				e.printStackTrace();
